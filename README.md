@@ -1,2 +1,3 @@
-# Mudus_classification
-A code base for fast EEG classification taks
+# Mudus_BCI
+Hope fully, a convinient code base for build, train and validate learning based BCI models
+
