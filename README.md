@@ -1,5 +1,5 @@
-# Mudus Brain Computer Interface (BCI)
-Hope fully, a convinient code base for build, train and validate learning based BCI models
+# Mudus EEG Signal Classification Code Base for Brain Computer Interface (BCI)
+Hope fully, a convinient code base for build, train and validate deep learning based BCI models
 
 🌍 Features
 
