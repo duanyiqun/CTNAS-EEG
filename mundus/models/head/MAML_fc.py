@@ -1,5 +1,5 @@
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Modified from: https://github.com/yaoyao-liu/meta-transfer-learning
+# Open source 15/08/2022
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 """ Meta Learner """
 import torch
