@@ -1,4 +1,4 @@
-# 'Mundus' EEG Signal Classification Code Base
+# Cross Task Neural Architecture Search for EEG Signal Classifications
 A convenient code base for build, train and validate deep learning based EEG recgonition networks.
 'Mundus EEG' means 'World of EEG' in medieval Latin language (please correct me if there is anything wrong with the meaning.)
 Hopefully name will give this repository some fun. 
