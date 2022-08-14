@@ -41,7 +41,7 @@ We give example search scripts in `./mix_train_search.py` for mixed-subject sear
 
 The training example on BCI-IV datasets:
 
-![vis_example](./images/vis_example.png =300)
+![vis_example](./images/vis_example.png)
 
 
 📒 Citation
