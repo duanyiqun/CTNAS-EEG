@@ -48,4 +48,4 @@ The training example on BCI-IV datasets:
 
 The information of original paper is listed below for convenient citation. 
 
-⌚️
+
