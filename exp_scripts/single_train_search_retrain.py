@@ -7,11 +7,11 @@ def run_exp(lr=0.05, gamma=0.5, step_size=20, pre_batch_size=8):
     shot = 20
     query = 10
     way = 4
-    gpu = 3
+    gpu = 2
     base_lr = 0.01
-    weight_lr=0.02
+    weight_lr=0.01
     alpha_lr=0.01
-    searched_structure_path = '/data00/home/xx/BCI/Mudus/Mudus_BCI/logs/normal_search/BCI_IV_Search_batchsize32_w_lr0.01_alpha_lr0.005_gamma0.5_step20_maxepoch240_Mix_Search_Formal_4_val_node_2_layer4_new_search_space_with_skip_Elu_flattennoadapp/max_acc.pth'
+    searched_structure_path = '/data00/home/xxx/BCI/Mudus/Mudus_BCI/logs/normal_search/BCI_IV_Search_batchsize32_w_lr0.01_alpha_lr0.005_gamma0.5_step20_maxepoch240_Single_Search_Formal_7_val_node_2_layer4_space_subject1/max_acc.pth'
     
     the_command = 'python3 lauch.py' \
         + ' --pre_max_epoch=' + str(max_epoch) \
@@ -25,14 +25,14 @@ def run_exp(lr=0.05, gamma=0.5, step_size=20, pre_batch_size=8):
         + ' --pre_lr=' + str(lr) \
         + ' --pre_batch_size=' + str(pre_batch_size) \
         + ' --searched_weights=' + str(searched_structure_path) \
-        + ' --phase=dependent' \
-        + ' --model_type=Search_retrain' \
-        + ' --exp_spc=current_best_retrain_argmax_drop_prob_0_subject_all_exp2' \
+        + ' --phase=dep_single' \
+        + ' --model_type=single_retrain' \
+        + ' --exp_spc=specific_retrain_argmax_drop_prob_0_subject_1' \
         + ' --w_lr=' + str(weight_lr) \
         + ' --alpha_lr=' + str(alpha_lr) 
     os.system(the_command)
 
 
-run_exp(lr=0.01, gamma=0.5, step_size=20, pre_batch_size=256)
+run_exp(lr=0.1, gamma=0.5, step_size=20, pre_batch_size=256)
 
 

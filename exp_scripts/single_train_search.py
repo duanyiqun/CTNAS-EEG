@@ -22,14 +22,14 @@ def run_exp(weight_lr=0.1, alpha_lr=0.05, gamma=0.5, step_size=20, pre_batch_siz
         + ' --w_lr=' + str(weight_lr) \
         + ' --alpha_lr=' + str(alpha_lr) \
         + ' --pre_batch_size=' + str(pre_batch_size) \
-        + ' --phase=dependent' \
+        + ' --phase=dep_single' \
         + ' --Search_nodes=2' \
         + ' --model_type=Search' \
-        + ' --exp_spc=allsubject_alpha_exp1_reim'
+        + ' --exp_spc=Single_Search_Formal_8_val_node_2_layer4_space_subject1_large'
 
     os.system(the_command)
 
 
-run_exp(weight_lr=0.01, alpha_lr=0.005, gamma=0.5, step_size=20, pre_batch_size=12)
+run_exp(weight_lr=0.01, alpha_lr=0.005, gamma=0.5, step_size=20, pre_batch_size=32)
 
 

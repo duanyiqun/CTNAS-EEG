@@ -1,26 +1,32 @@
 """ Main function for this repo. """
 import argparse
 import torch
-from mudus.utils.misc import pprint
-from mudus.utils.gpu_tools import set_gpu
-from mudus.runners.meta import MetaTrainer
-from mudus.runners.pre import PreTrainer
-from mudus.runners.normal import Noraml_Trainer, Normal_Search_Trainer, Searched_ReTrainer
-from mudus.runners.ind_search import PreTrainer as Ind_search
-from mudus.runners.ind_search_cw_tw import PreTrainer as Ind_search_cw_tw
+from mundus.utils.misc import pprint
+from mundus.utils.gpu_tools import set_gpu
+from mundus.runners.meta import MetaTrainer
+from mundus.runners.pre import PreTrainer
+from mundus.runners.normal import Noraml_Trainer, Normal_Search_Trainer, Searched_ReTrainer
+from mundus.runners.normal_seed import Normal_Search_Trainer as Normal_Search_Trainer_seed
+from mundus.runners.normal_seed import Searched_ReTrainer as Searched_ReTrainer_seed
+from mundus.runners.ind_search import PreTrainer as Ind_search
+from mundus.runners.ind_search_cw_tw import PreTrainer as Ind_search_cw_tw
+from mundus.runners.single import Single_Noraml_Trainer, Single_Normal_Search_Trainer, Single_Searched_ReTrainer
+from mundus.runners.single_seed import Single_Normal_Search_Trainer as  Single_Normal_Search_Trainer_seed
+from mundus.runners.single_seed import Single_Searched_ReTrainer as Single_Searched_ReTrainer_seed
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     # Basic parameters
     parser.add_argument('--model_type', type=str, default='EEGNet',
-                        choices=['EEGNet', 'Search', 'Search_cw_tw', 'Search_retrain'])  # The network architecture
+                        choices=['EEGNet', 'Search', 'Search_cw_tw', 'Search_retrain', 'single_retrain', 'Search_seed', 'Search_retrain_seed'])  # The network architecture
     parser.add_argument('--dataset', type=str, default='BCI_IV') # Dataset
     parser.add_argument('--data_folder', type=str, default='./data/bci_iv') # Dataset)
     parser.add_argument('--phase', type=str, default='meta_train',
-                        choices=['pre_train', 'meta_train', 'meta_eval', 'independent', 'dependent'])  # Phase
+                        choices=['pre_train', 'meta_train', 'meta_eval', 'independent', 'dependent', 'dep_single'])  # Phase
     # Manual seed for PyTorch, "0" means using random seed
     parser.add_argument('--seed', type=int, default=0)
-    parser.add_argument('--gpu', default='1')  # GPU id
+    parser.add_argument('--gpu', default='3')  # GPU id
     parser.add_argument('--dataset_dir', type=str,
                         default='./data/')  # Dataset folder
 
@@ -81,7 +87,8 @@ if __name__ == '__main__':
     parser.add_argument('--input_channels', default=22, type=int)
     parser.add_argument('--init_stacks_channel', default=16, type=int)
     parser.add_argument('--init_stacks', default=7, type=int)
-    parser.add_argument('--Search_layers', default=3, type=int)
+    parser.add_argument('--Search_layers', default=4, type=int)
+    parser.add_argument('--Search_nodes', default=2, type=int)
     parser.add_argument('--epochs', default=3, type=int)
     parser.add_argument('--searched_weights', default='', type=str)
     parser.add_argument('--num_class', default=7, type=int)
@@ -92,6 +99,10 @@ if __name__ == '__main__':
     parser.add_argument('--alpha_weight_decay', default=0.1, type=float)
     parser.add_argument('--graph_plot_path', default=True, type=bool)
     parser.add_argument('--exp_spc', default='exp1', type=str)
+    parser.add_argument('--single_id', default='1', type=str)
+    parser.add_argument('--mix_session', default='True', type=str)
+    parser.add_argument('--seed_no_overlap', default='True', type=str)
+
 
     # Set the parameters
     args = parser.parse_args()
@@ -139,8 +150,30 @@ if __name__ == '__main__':
         elif args.model_type == 'Search_retrain':
             trainer = Searched_ReTrainer(args)
             trainer.train()
+        elif args.model_type == 'Search_seed':
+            trainer = Normal_Search_Trainer_seed(args)
+            trainer.train()
+        elif args.model_type == 'Search_retrain_seed':
+            trainer = Searched_ReTrainer_seed(args)
+            trainer.train()
         else:
             trainer = Noraml_Trainer(args)
+            trainer.train()
+    elif args.phase == 'dep_single':
+        if args.model_type == 'Search':
+            trainer = Single_Normal_Search_Trainer(args)
+            trainer.train()
+        elif args.model_type == 'single_retrain':
+            trainer = Single_Searched_ReTrainer(args)
+            trainer.train()
+        elif args.model_type == 'Search_seed':
+            trainer = Single_Normal_Search_Trainer_seed(args)
+            trainer.train()
+        elif args.model_type == 'Search_retrain_seed':
+            trainer = Single_Searched_ReTrainer_seed(args)
+            trainer.train()
+        else:
+            trainer = Single_Noraml_Trainer(args)
             trainer.train()
     else:
         raise ValueError('Please set correct phase.')
