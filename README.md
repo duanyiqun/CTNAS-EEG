@@ -1,6 +1,8 @@
 
 ### Cross Task Neural Architecture Search for EEG Signal Classifications
-<img src=./images/metanet.png width = "700" height = "200"  align=center />
+
+
+<img src=./images/metanet.png width = "780" height = "220"  align=center />
 
 A convenient code base for fast model customization of EEG models. By introducing NAS into EEG signals, hopefully we could increase the automatic  level  of designing models for BCI signals. 
 
