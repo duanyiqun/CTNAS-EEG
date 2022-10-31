@@ -6,14 +6,20 @@
 
 A convenient code base for fast model customization of EEG models. By introducing NAS into EEG signals, hopefully we could increase the automatic  level  of designing models for BCI signals. 
 
-Also, an implementation of paper ``Cross Task Neural Architecture Search for EEG Signal Recognition''.
+Also, an implementation of paper [Cross Task Neural Architecture Search for EEG Signal Recognition](https://arxiv.org/pdf/2210.06298.pdf).
 
 ### Citation
 <div style='display: none'>
 
-If you find this code base is useful for you research, please kindly cite our paper. 
-```angular2html
+If you find this code base is useful for you research
 
+```angular2html
+@article{duan2022cross,
+  title={Cross Task Neural Architecture Search for EEG Signal Classifications},
+  author={Duan, Yiqun and Wang, Zhen and Li, Yi and Tang, Jianhang and Wang, Yu-Kai and Lin, Chin-Teng},
+  journal={arXiv preprint arXiv:2210.06298},
+  year={2022}
+}
 ```
 </div>
 
